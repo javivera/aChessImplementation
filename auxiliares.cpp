@@ -2,7 +2,8 @@
 #include "auxiliares.h"
 #include <iostream>
 using namespace std;
-// aqui se pueden ubicar todas las funciones auxiliares de soporte para la resolucion de los ejercicios
+
+// Funciones auxiliares:
 pair<int,int> mp(int a, int b) {
     return make_pair(a, b);
 }
@@ -34,6 +35,7 @@ tablero inicializarTablero(){
 int jugadorPosicion (posicion p){
     return p.second;
 }
+
 int pieza(tablero t, coordenada c){
     return (t[c.first][c.second]).first;
 }
@@ -48,6 +50,7 @@ int contrincante(int j){
     else
         return BLANCO;
 }
+
 int aparicionesEnTablero(tablero t, casilla c){
     int contador=0,i=0,j=0;
     int dim=ANCHO_TABLERO;
@@ -89,14 +92,13 @@ bool casillaVacia(casilla c){
 
 bool casillasValidas(tablero t){
     int dim = ANCHO_TABLERO;
-    int i=0,j=0;
-    bool resp=true;
+    int i=0, j=0;
+    bool resp = true;
     casilla c;
     while (i<dim){
         j = 0;
         while (j<dim){
             c = t[i][j];
-            cout << c.first;
             resp = resp && (casillaVacia(c) || (PEON<=c.first<=REY && BLANCO<=c.second<=NEGRO));
             j = j + 1;
         }
@@ -117,7 +119,6 @@ bool sinPeonesNoCoronados(tablero t){
     }
     return resp;
 }
-
 
 bool piezasTorresValidas(tablero t){
     int dim = ANCHO_TABLERO;
@@ -151,8 +152,8 @@ bool piezasAlfilesValidas(tablero t){
 }
 
 bool piezasReyesValidas(tablero t){
-    casilla c = mp(4,1);
-    int prueba = REY;
+    casilla c;
+    c = mp(REY,BLANCO);
     bool resp = (aparicionesEnTablero(t,c)==1);
     c = mp(REY,NEGRO);
     resp = resp && (aparicionesEnTablero(t,c)==1);
@@ -160,11 +161,9 @@ bool piezasReyesValidas(tablero t){
 }
 
 bool cantidadValidaDePiezas(tablero t){
-    bool resp = piezasTorresValidas(t) && piezasPeonesValidas(t) && piezasAlfilesValidas(t) && piezasReyesValidas(t);
-    return resp;
+    return resp = piezasTorresValidas(t) && piezasPeonesValidas(t) && piezasAlfilesValidas(t) && piezasReyesValidas(t);
 }
 
 bool esTableroValido(tablero t){
-    bool resp = esMatriz(t) && casillasValidas(t) && sinPeonesNoCoronados(t) && cantidadValidaDePiezas(t);
-    return resp;
+    return resp = esMatriz(t) && casillasValidas(t) && sinPeonesNoCoronados(t) && cantidadValidaDePiezas(t);
 }
