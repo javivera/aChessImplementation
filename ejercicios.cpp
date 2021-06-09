@@ -3,7 +3,7 @@
 #include "auxiliares.h"
 #include <iostream>
 using namespace std;
-cout << "hola!!";
+
 // EJERCICIO 1
 bool posicionValida ( pair < tablero, int > const &p ) {
     bool resp = (esJugadorValido(jugadorPosicion(p)) && esTableroValido(tableroActual(p)));
