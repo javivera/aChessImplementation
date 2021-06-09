@@ -6,7 +6,7 @@ using namespace std;
 
 // EJERCICIO 1
 bool posicionValida ( pair < tablero, int > const &p ) {
-    bool resp = esTableroValido(tableroActual(p)) && esJugadorValido(jugadorPosicion(p));
+    bool resp = (esJugadorValido(jugadorPosicion(p)) && esTableroValido(tableroActual(p)));
     return resp;
 }
 
