@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/jvera/CLionProjects/template-alumnos/lib/googletest-master/googlemock/src/gmock_main.cc" "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/lib/googletest-master/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/lib/googletest-master/googlemock/src/gmock_main.cc" "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/lib/googletest-master/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -18,8 +18,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/lib/googletest-master/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake"
-  "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/lib/googletest-master/googlemock/gtest/CMakeFiles/gtest.dir/DependInfo.cmake"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/lib/googletest-master/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/lib/googletest-master/googlemock/gtest/CMakeFiles/gtest.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

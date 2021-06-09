@@ -1,4 +1,16 @@
-/usr/bin/clion/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/jvera/CLionProjects/template-alumnos
+"C:\Program Files\JetBrains\CLion 2021.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\Lucho\Documents\GitHub\aChessImplementation
+-- The C compiler identification is GNU 8.1.0
+-- The CXX compiler identification is GNU 8.1.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
 CMake Deprecation Warning at lib/googletest-master/CMakeLists.txt:1 (cmake_minimum_required):
   Compatibility with CMake < 2.8.12 will be removed from a future version of
   CMake.
@@ -23,6 +35,7 @@ CMake Deprecation Warning at lib/googletest-master/googletest/CMakeLists.txt:53 
   CMake that the project does not need compatibility with older versions.
 
 
+-- Found PythonInterp: C:/Users/Lucho/AppData/Local/Programs/Python/Python39/python.exe (found version "3.9") 
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/jvera/CLionProjects/template-alumnos/cmake-build-debug
+-- Build files have been written to: C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug

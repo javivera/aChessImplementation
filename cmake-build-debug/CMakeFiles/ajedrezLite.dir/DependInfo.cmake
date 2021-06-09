@@ -4,18 +4,18 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/jvera/CLionProjects/template-alumnos/auxiliares.cpp" "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/CMakeFiles/ajedrezLite.dir/auxiliares.o"
-  "/home/jvera/CLionProjects/template-alumnos/ejercicios.cpp" "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/CMakeFiles/ajedrezLite.dir/ejercicios.o"
-  "/home/jvera/CLionProjects/template-alumnos/main.cpp" "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/CMakeFiles/ajedrezLite.dir/main.o"
-  "/home/jvera/CLionProjects/template-alumnos/tests/ej1_posicionValidaTEST.cpp" "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej1_posicionValidaTEST.o"
-  "/home/jvera/CLionProjects/template-alumnos/tests/ej2_posicionInicialValidaTEST.cpp" "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej2_posicionInicialValidaTEST.o"
-  "/home/jvera/CLionProjects/template-alumnos/tests/ej3_casillasAtacadasTEST.cpp" "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej3_casillasAtacadasTEST.o"
-  "/home/jvera/CLionProjects/template-alumnos/tests/ej4_posicionSiguienteCorrectaTEST.cpp" "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej4_posicionSiguienteCorrectaTEST.o"
-  "/home/jvera/CLionProjects/template-alumnos/tests/ej5_ordenarTableroTEST.cpp" "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej5_ordenarTableroTEST.o"
-  "/home/jvera/CLionProjects/template-alumnos/tests/ej6_finDeLaPartidaTEST.cpp" "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej6_finDeLaPartidaTEST.o"
-  "/home/jvera/CLionProjects/template-alumnos/tests/ej7_hayJaqueDescubiertoTEST.cpp" "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej7_hayJaqueDescubiertoTEST.o"
-  "/home/jvera/CLionProjects/template-alumnos/tests/ej8_ejecutarSecuenciaForzadaTEST.cpp" "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej8_ejecutarSecuenciaForzadaTEST.o"
-  "/home/jvera/CLionProjects/template-alumnos/tests/ej9_seVieneElJaqueEnTEST.cpp" "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej9_seVieneElJaqueEnTEST.o"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/auxiliares.cpp" "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/CMakeFiles/ajedrezLite.dir/auxiliares.obj"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/ejercicios.cpp" "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/CMakeFiles/ajedrezLite.dir/ejercicios.obj"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/main.cpp" "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/CMakeFiles/ajedrezLite.dir/main.obj"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/tests/ej1_posicionValidaTEST.cpp" "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej1_posicionValidaTEST.obj"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/tests/ej2_posicionInicialValidaTEST.cpp" "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej2_posicionInicialValidaTEST.obj"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/tests/ej3_casillasAtacadasTEST.cpp" "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej3_casillasAtacadasTEST.obj"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/tests/ej4_posicionSiguienteCorrectaTEST.cpp" "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej4_posicionSiguienteCorrectaTEST.obj"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/tests/ej5_ordenarTableroTEST.cpp" "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej5_ordenarTableroTEST.obj"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/tests/ej6_finDeLaPartidaTEST.cpp" "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej6_finDeLaPartidaTEST.obj"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/tests/ej7_hayJaqueDescubiertoTEST.cpp" "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej7_hayJaqueDescubiertoTEST.obj"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/tests/ej8_ejecutarSecuenciaForzadaTEST.cpp" "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej8_ejecutarSecuenciaForzadaTEST.obj"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/tests/ej9_seVieneElJaqueEnTEST.cpp" "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/CMakeFiles/ajedrezLite.dir/tests/ej9_seVieneElJaqueEnTEST.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -26,8 +26,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/lib/googletest-master/googlemock/gtest/CMakeFiles/gtest.dir/DependInfo.cmake"
-  "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/lib/googletest-master/googlemock/gtest/CMakeFiles/gtest_main.dir/DependInfo.cmake"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/lib/googletest-master/googlemock/gtest/CMakeFiles/gtest.dir/DependInfo.cmake"
+  "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/lib/googletest-master/googlemock/gtest/CMakeFiles/gtest_main.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

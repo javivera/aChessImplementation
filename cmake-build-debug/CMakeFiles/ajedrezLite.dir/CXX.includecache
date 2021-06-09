@@ -6,7 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/jvera/CLionProjects/template-alumnos/definiciones.h
+C:/Users/Lucho/Documents/GitHub/aChessImplementation/auxiliares.h
+definiciones.h
+C:/Users/Lucho/Documents/GitHub/aChessImplementation/definiciones.h
+
+C:/Users/Lucho/Documents/GitHub/aChessImplementation/definiciones.h
 vector
 -
 cmath
@@ -14,15 +18,25 @@ cmath
 algorithm
 -
 
-/home/jvera/CLionProjects/template-alumnos/ejercicios.cpp
-algorithm
--
-ejercicios.h
-/home/jvera/CLionProjects/template-alumnos/ejercicios.h
+C:/Users/Lucho/Documents/GitHub/aChessImplementation/ejercicios.cpp
 iostream
 -
-
-/home/jvera/CLionProjects/template-alumnos/ejercicios.h
+cmath
+-
+vector
+-
+algorithm
+-
+utility
+-
+ejercicios.h
+C:/Users/Lucho/Documents/GitHub/aChessImplementation/ejercicios.h
 definiciones.h
-/home/jvera/CLionProjects/template-alumnos/definiciones.h
+C:/Users/Lucho/Documents/GitHub/aChessImplementation/definiciones.h
+auxiliares.h
+C:/Users/Lucho/Documents/GitHub/aChessImplementation/auxiliares.h
+
+C:/Users/Lucho/Documents/GitHub/aChessImplementation/ejercicios.h
+definiciones.h
+C:/Users/Lucho/Documents/GitHub/aChessImplementation/definiciones.h
 

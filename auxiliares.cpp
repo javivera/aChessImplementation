@@ -3,7 +3,6 @@
 #include <vector>
 #include <algorithm>
 #include <utility>
-#include "test.h"
 #include "ejercicios.h"
 #include "definiciones.h"
 #include "auxiliares.h"

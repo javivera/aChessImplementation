@@ -1,8 +1,8 @@
-# Install script for directory: /home/jvera/CLionProjects/template-alumnos/lib/googletest-master/googlemock
+# Install script for directory: C:/Users/Lucho/Documents/GitHub/aChessImplementation/lib/googletest-master/googlemock
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/usr/local")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/ajedrezLite")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -27,11 +27,6 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
-# Install shared libraries without execute permission?
-if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "0")
-endif()
-
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
@@ -39,31 +34,31 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/objdump.exe")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/lib/googletest-master/googlemock/libgmockd.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/lib/googletest-master/googlemock/libgmockd.a")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/lib/googletest-master/googlemock/libgmock_maind.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/lib/googletest-master/googlemock/libgmock_maind.a")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/jvera/CLionProjects/template-alumnos/lib/googletest-master/googlemock/include/gmock")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "C:/Users/Lucho/Documents/GitHub/aChessImplementation/lib/googletest-master/googlemock/include/gmock")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES
-    "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/gmock.pc"
-    "/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/gmock_main.pc"
+    "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/gmock.pc"
+    "C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/gmock_main.pc"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/jvera/CLionProjects/template-alumnos/cmake-build-debug/lib/googletest-master/googlemock/gtest/cmake_install.cmake")
+  include("C:/Users/Lucho/Documents/GitHub/aChessImplementation/cmake-build-debug/lib/googletest-master/googlemock/gtest/cmake_install.cmake")
 
 endif()
 
