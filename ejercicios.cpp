@@ -1,18 +1,41 @@
 #include <algorithm>
 #include "ejercicios.h"
 #include <iostream>
+using namespace std;
 
 // EJERCICIO 1
 bool posicionValida ( pair < tablero, int > const &p ) {
     bool resp = false;
-    cout << p.first[0][0].first;
+    if (p.first.size() == 1 ) {
+        // Si el tablero es vacío devuelve false en el moment
+        cout << resp;
+        return resp;
+    }
+    else{
+        for (int fil = 0 ; fil < p.first.size() ; fil++ ){
+            for (int col = 0 ; col < p.first[0].size() ; col ++){
+                // Itera sobre el tablero
+                if (p.first[fil][col].first < 5 and p.first[fil][col].first > 1 ){
+                // Si encuentra una pieza correcta , cambia la respuesta a true
+                    resp = true;
+                }
+                if (p.first[fil][col].first > 4 and p.first[fil][col].first < 0){
+                // Este no es necesario es para optimizar el código , si encuentra alguna casiila que tiene una pieza inválida no mirá el resto
+                    return false;
+                }
+            }
+        }
+    }
+    cout << resp;
     return resp;
 }
 
 // EJERCICIO 2
 bool posicionInicial ( posicion const &p ) {
     bool resp = false;
+
     // completar codigo
+
     return resp;
 }
 // EJERCICIO 3
