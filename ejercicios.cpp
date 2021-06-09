@@ -8,8 +8,7 @@ bool posicionValida ( pair < tablero, int > const &p ) {
     bool resp = false;
     if (p.first.size() == 1 ) {
         // Si el tablero es vacío devuelve false en el moment
-        cout << resp;
-        return resp;
+        return false;
     }
     else{
         for (int fil = 0 ; fil < p.first.size() ; fil++ ){
@@ -26,7 +25,6 @@ bool posicionValida ( pair < tablero, int > const &p ) {
             }
         }
     }
-    cout << resp;
     return resp;
 }
 
