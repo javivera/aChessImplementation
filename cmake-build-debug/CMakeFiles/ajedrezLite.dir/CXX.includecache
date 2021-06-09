@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jvera/CLionProjects/template-alumnos/definiciones.h
+vector
+-
+cmath
+-
+algorithm
+-
+
+/home/jvera/CLionProjects/template-alumnos/ejercicios.cpp
+algorithm
+-
+ejercicios.h
+/home/jvera/CLionProjects/template-alumnos/ejercicios.h
+iostream
+-
+
+/home/jvera/CLionProjects/template-alumnos/ejercicios.h
+definiciones.h
+/home/jvera/CLionProjects/template-alumnos/definiciones.h
+
