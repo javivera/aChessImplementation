@@ -77,6 +77,7 @@ int maximo(int x, int y){
 }
 
 //Predicados auxiliares:
+//Ejercicio 1:
 bool esJugadorValido(int j){
     return (j == BLANCO || j == NEGRO);
 }
@@ -171,7 +172,7 @@ bool esTableroValido(tablero t){
     return resp;
 }
                           
-///
+//Ejercicio 2:
 
 bool piezaEnCoordenada(tablero t, coordenada c, int pza, int col){
     return pieza(t,c)==pza && color(t,c)==col;
@@ -227,7 +228,7 @@ bool cantidadPiezasAlInicio(tablero t){
     return resp;
 }
 
-///
+//Impresion:
 
 void imprimir_coordenada(coordenada c){
     cout << "(" << c.first << ", " << c.second << ")";
@@ -278,7 +279,7 @@ void imprimir_tablero(tablero t){ //Pre: tableroValido(p)
     cout << endl;
 }
 
-///
+//Ejercicio 3:
 
 bool mueveEnHorizontal(coordenada o, coordenada d){
     return (abs(o.first - d.first) == 0) && (abs(o.second - d.second) == 1);
