@@ -21,7 +21,12 @@ bool posicionInicial ( posicion const &p ) { //Pre: esPosicionValida(p)
 // EJERCICIO 3
 vector <coordenada> casillasAtacadas ( posicion const &p, int j ) {
     vector <coordenada> cA;
-    // completar codigo
+    for (int i=0; i<ANCHO_TABLERO; i++){
+        for (int k=0; k<ANCHO_TABLERO; k++){
+            if (esCasillaAtacada(tableroActual(p),j,mp(i,k)))
+                cA.push_back(mp(i,k));
+        }
+    }
     return cA;
 }
 
