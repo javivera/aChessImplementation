@@ -86,8 +86,10 @@ bool esMatriz(tablero t){
     bool resp = (t.size() == ANCHO_TABLERO);
     if (resp){
         for (int i=0; i<ANCHO_TABLERO; i++){
-            if (t[i].size() != ANCHO_TABLERO)
+            if (t[i].size() != ANCHO_TABLERO){
                 resp = false;
+                break;
+            }
         }
     }
     return resp;
@@ -112,8 +114,10 @@ bool casillasValidas(tablero t){
 bool sinPeonesNoCoronados(tablero t){
     bool resp = true;
     for (int i=0; i<ANCHO_TABLERO; i++){
-        if (pieza(t,mp(0,i))==PEON || pieza(t,mp(ANCHO_TABLERO-1,i))==PEON)
+        if (pieza(t,mp(0,i))==PEON || pieza(t,mp(ANCHO_TABLERO-1,i))==PEON){
             resp = false;
+            break;
+        }
     }
     return resp;
 }
@@ -183,6 +187,7 @@ bool peonesEnCoordenadas(tablero t){
     for (int i=0; i<ANCHO_TABLERO; i++){
         if (!piezaEnCoordenada(t,mp(1,i),PEON,NEGRO) || !piezaEnCoordenada(t,mp(6,i),PEON,BLANCO)){
             resp = false;
+            break;
         }
     }
     return resp;
@@ -365,11 +370,13 @@ bool casillaAtacada(tablero t, coordenada o, coordenada d){ // o ataca a d
 bool esCasillaAtacada(tablero t, int jugador, coordenada o){
     bool resp = false;
     coordenada d;
-    for (int i=0; i<ANCHO_TABLERO; i++){
+    for (int i=0; i<ANCHO_TABLERO && !resp; i++){
         for (int j=0; j<ANCHO_TABLERO; j++){
             d = mp(i,j);
-            if (o != d && color(t,d)==jugador && casillaAtacada(t,d,o)) // d ataca a o
+            if (o != d && color(t,d)==jugador && casillaAtacada(t,d,o)){ // d ataca a o
                 resp = true;
+                break;
+            }
         }
     }
     return resp;
