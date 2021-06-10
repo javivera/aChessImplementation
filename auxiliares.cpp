@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-// Funciones auxiliares:
+// Funciones auxiliares preliminares:
 pair<int,int> mp(int a, int b) {
     return make_pair(a, b);
 }
@@ -32,7 +32,7 @@ tablero inicializarTablero(){
 ////// Nuevos segun orden de aparición:
 
 //Funciones auxiliares:
-int jugadorPosicion (posicion p){
+int jugadorPosicion(posicion p){
     return p.second;
 }
 
@@ -52,17 +52,12 @@ int contrincante(int j){
 }
 
 int aparicionesEnTablero(tablero t, casilla c){
-    int contador=0,i=0,j=0;
-    int dim=ANCHO_TABLERO;
-    while (i<dim){
-        j = 0;
-        while(j<dim){
-            if (t[i][j]==c){
-                contador++;
-            }
-            j++;
+    int contador=0;
+    for (int i=0; i<ANCHO_TABLERO; i++){
+        for (int j=0; j<ANCHO_TABLERO; j++){
+            if (t[i][j]==c)
+                contador = contador + 1;
         }
-        i++;
     }
     return contador;
 }
@@ -73,14 +68,11 @@ bool esJugadorValido(int j){
 }
 
 bool esMatriz(tablero t){
-    int dim = ANCHO_TABLERO;
-    bool resp = (t.size() == dim);
-    if(resp) {
-        int i = 0;
-        while (i < dim) {
-            if (t[i].size() != dim)
+    bool resp = (t.size() == ANCHO_TABLERO);
+    if (resp){
+        for (int i=0; i<ANCHO_TABLERO; i++){
+            if (t[i].size() != ANCHO_TABLERO)
                 resp = false;
-            i = i + 1;
         }
     }
     return resp;
@@ -91,79 +83,77 @@ bool casillaVacia(casilla c){
 }
 
 bool casillasValidas(tablero t){
-    int dim = ANCHO_TABLERO;
-    int i=0, j=0;
     bool resp = true;
     casilla c;
-    while (i<dim){
-        j = 0;
-        while (j<dim){
+    for (int i=0; i<ANCHO_TABLERO; i++){
+        for (int j=0; j<ANCHO_TABLERO; j++){
             c = t[i][j];
             resp = resp && (casillaVacia(c) || (PEON<=c.first<=REY && BLANCO<=c.second<=NEGRO));
-            j = j + 1;
         }
-        i = i + 1;
     }
     return resp;
 }
 
 bool sinPeonesNoCoronados(tablero t){
-    int dim = ANCHO_TABLERO;
-    int i=0;
     bool resp = true;
-    while(i<dim){
-        if(pieza(t,setCoord(0,i))==PEON || pieza(t,setCoord(dim-1,i))==PEON){
+    for (int i=0; i<ANCHO_TABLERO; i++){
+        if (pieza(t,mp(0,i))==PEON || pieza(t,mp(ANCHO_TABLERO-1,i))==PEON)
             resp = false;
-        }
-        i = i + 1;
     }
     return resp;
 }
 
 bool piezasTorresValidas(tablero t){
-    int dim = ANCHO_TABLERO;
     casilla c_t,c_p;
     c_t = mp(TORRE,BLANCO);
     c_p = mp(PEON,BLANCO);
-    bool resp = (aparicionesEnTablero(t,c_t) <= 2 + dim - aparicionesEnTablero(t,c_p));
+    bool resp = (aparicionesEnTablero(t,c_t) <= 2 + ANCHO_TABLERO - aparicionesEnTablero(t,c_p));
     c_t = mp(TORRE,NEGRO);
     c_p = mp(PEON,NEGRO);
-    resp = resp && (aparicionesEnTablero(t,c_t) <= 2 + dim - aparicionesEnTablero(t,c_p));
+    resp = resp && (aparicionesEnTablero(t,c_t) <= 2 + ANCHO_TABLERO - aparicionesEnTablero(t,c_p));
     return resp;
 }
 
 bool piezasPeonesValidas(tablero t){
-    int dim = ANCHO_TABLERO;
     casilla c;
     c = mp(PEON,BLANCO);
-    bool resp = (aparicionesEnTablero(t,c)<=dim);
+    bool resp = (aparicionesEnTablero(t,c) <= ANCHO_TABLERO);
     c = mp(PEON,NEGRO);
-    resp = resp && (aparicionesEnTablero(t,c)<=dim);
+    resp = resp && (aparicionesEnTablero(t,c) <= ANCHO_TABLERO);
     return resp;
 }
 
 bool piezasAlfilesValidas(tablero t){
     casilla c;
     c = mp(ALFIL,BLANCO);
-    bool resp = (aparicionesEnTablero(t,c)<=2);
+    bool resp = (aparicionesEnTablero(t,c) <= 2);
     c = mp(ALFIL,NEGRO);
-    resp = resp && (aparicionesEnTablero(t,c)<=2);
+    resp = resp && (aparicionesEnTablero(t,c) <= 2);
     return resp;
 }
 
 bool piezasReyesValidas(tablero t){
     casilla c;
     c = mp(REY,BLANCO);
-    bool resp = (aparicionesEnTablero(t,c)==1);
+    bool resp = (aparicionesEnTablero(t,c) == 1);
     c = mp(REY,NEGRO);
-    resp = resp && (aparicionesEnTablero(t,c)==1);
+    resp = resp && (aparicionesEnTablero(t,c) == 1);
     return resp;
 }
 
 bool cantidadValidaDePiezas(tablero t){
-    return resp = piezasTorresValidas(t) && piezasPeonesValidas(t) && piezasAlfilesValidas(t) && piezasReyesValidas(t);
+    bool resp = piezasTorresValidas(t);
+    resp = resp && piezasPeonesValidas(t);
+    resp = resp && piezasAlfilesValidas(t);
+    resp = resp && piezasReyesValidas(t);
+    return resp;
 }
 
 bool esTableroValido(tablero t){
-    return resp = esMatriz(t) && casillasValidas(t) && sinPeonesNoCoronados(t) && cantidadValidaDePiezas(t);
+    bool resp = esMatriz(t);
+    resp = resp && casillasValidas(t);
+    resp = resp && sinPeonesNoCoronados(t);
+    resp = resp && cantidadValidaDePiezas(t);
+    return resp;
 }
+                          
