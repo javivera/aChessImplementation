@@ -1,12 +1,13 @@
 #include <algorithm>
 #include "ejercicios.h"
+#include "definiciones.h"
 #include "auxiliares.h"
 #include <iostream>
 using namespace std;
 
 // EJERCICIO 1
 bool posicionValida ( pair < tablero, int > const &p ) {
-    return (esJugadorValido(jugadorPosicion(p)) && esTableroValido(tableroActual(p)));
+    return esJugadorValido(jugadorPosicion(p)) && esTableroValido(tableroActual(p));
 }
 
 // EJERCICIO 2
