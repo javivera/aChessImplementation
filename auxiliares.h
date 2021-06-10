@@ -66,5 +66,15 @@ bool capturaPeonValida(tablero t, coordenada o, coordenada d);
 bool casillaAtacada(tablero t, coordenada o, coordenada d);
 bool esCasillaAtacada(tablero t, int jugador, coordenada o);
 
+//Ejercicio 4:
+bool coordenada_en_secuencia(vector<coordenada> s, coordenada c);
+bool posicionesIgualesExceptoEn(posicion p, posicion q, vector<coordenada> s);
+bool esMovimientoValido(posicion p, coordenada o, coordenada d);
+bool esCapturaValida(posicion p, coordenada o, coordenada d);
+bool enLineaFinalInicial(coordenada d);
+bool piezaCorrectaEnDestino(posicion p, posicion q, coordenada o, coordenada d);
+bool posicionSiguiente(posicion p, posicion q, coordenada o, coordenada d);
+
+
 
 #endif //AJEDREZLITE_AUXILIARES_H
