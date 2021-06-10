@@ -62,6 +62,20 @@ int aparicionesEnTablero(tablero t, casilla c){
     return contador;
 }
 
+int minimo(int x, int y){
+    if (x<y)
+        return x;
+    else
+        return y;
+}
+
+int maximo(int x, int y){
+    if (x<y)
+        return y;
+    else
+        return x;
+}
+
 //Predicados auxiliares:
 bool esJugadorValido(int j){
     return (j == BLANCO || j == NEGRO);
@@ -213,4 +227,150 @@ bool cantidadPiezasAlInicio(tablero t){
     return resp;
 }
 
+///
+
+void imprimir_coordenada(coordenada c){
+    cout << "(" << c.first << ", " << c.second << ")";
+}
+
+void imprimir_vector_de_coordenadas(vector<coordenada> v){
+    cout << "<";
+    if (v.size()>0){
+        for (int i=0; i<v.size()-1; i++){
+            imprimir_coordenada(v[i]);
+            cout << ", ";
+        }
+        imprimir_coordenada(v[v.size()-1]);
+    }
+    cout << ">" << endl;
+}
+
+void imprimir_casilla(casilla c){
+    if (c==mp(0,0))
+        cout << " cVacia ";
+    else if (c==mp(PEON,BLANCO))
+        cout << "cPeon_B ";
+    else if (c==mp(PEON,NEGRO))
+        cout << "cPeon_N ";
+    else if (c==mp(TORRE,BLANCO))
+        cout << "cTorre_B";
+    else if (c==mp(TORRE,NEGRO))
+        cout << "cTorre_N";
+    else if (c==mp(ALFIL,BLANCO))
+        cout << "cAlfil_B";
+    else if (c==mp(ALFIL,NEGRO))
+        cout << "cAlfil_N";
+    else if (c==mp(REY,BLANCO))
+        cout << " cRey_B ";
+    else if (c==mp(REY,NEGRO))
+        cout << " cRey_N ";
+}
+
+void imprimir_tablero(tablero t){ //Pre: tableroValido(p)
+    cout << endl;
+    for (int i=0; i<ANCHO_TABLERO; i++){
+        for (int j=0; j<ANCHO_TABLERO; j++){
+            imprimir_casilla(t[i][j]);
+            cout << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+///
+
+bool mueveEnHorizontal(coordenada o, coordenada d){
+    return (abs(o.first - d.first) == 0) && (abs(o.second - d.second) == 1);
+}
+
+bool mueveEnVertical(coordenada o, coordenada d){
+    return (abs(o.first - d.first) == 1) && (abs(o.second - d.second) == 0);
+}
+
+bool mueveEnDiagonal(coordenada o, coordenada d){
+    return (abs(o.first - d.first) == 1) && (abs(o.second - d.second) == 1);
+}
+
+bool movimientoPeonValido(int color, coordenada o, coordenada d){
+    bool resp = (o.second == d.second);
+    bool opcion_1 = (color == BLANCO && (d.first == o.first - 1));
+    bool opcion_2 = (color == NEGRO && (d.first == o.first + 1));
+    return resp && (opcion_1 || opcion_2);
+}
+
+bool movimientoAlfilValido(tablero t, coordenada o, coordenada d){
+    int a = d.first - o.first;
+    int b = d.second - o.second;
+    bool resp = (abs(a) == abs(b));
+    if (resp){
+        for (int i=1; i<abs(a); i++){ ///REVISAAARR
+            if (a>0 && b>0)
+                resp = resp && casillaVacia(t[o.first + i][o.second + i]); 
+            else if (a>0 && b<0)
+                resp = resp && casillaVacia(t[o.first + i][o.second - i]);
+            else if (a<0 && b>0)
+                resp = resp && casillaVacia(t[o.first - i][o.second + i]);
+            else if (a<0 && b<0)
+                resp = resp && casillaVacia(t[o.first - i][o.second - i]);
+        }
+    }
+    return resp;
+}
+
+bool movimientoTorreValido(tablero t, coordenada o, coordenada d){ //REVISAAAR
+    bool opcion_1 = d.second == o.second;
+    bool opcion_2 = d.first == o.first;
+    bool resp = opcion_1 || opcion_2;
+    if (opcion_1){ //Movimiento horizontal
+        for (int i=minimo(d.first,o.first)+1; i<maximo(d.first,o.first); i++){
+            resp = resp && casillaVacia(t[i][d.second]);
+        }
+    }
+    if (opcion_2){ //Movimiento vertical
+        for (int i=minimo(d.second,o.second)+1; i<maximo(d.second,o.second); i++){
+            resp = resp && casillaVacia(t[d.first][i]);
+        }
+    }
+    return resp;
+}
+
+bool movimientoReyValido(coordenada o, coordenada d){
+    return mueveEnDiagonal(o,d) || mueveEnVertical(o,d) || mueveEnHorizontal(o,d);
+}
+
+bool movimientoPiezaValido(tablero t, coordenada o, coordenada d){
+    bool opcion_1 = (pieza(t,o) == PEON && movimientoPeonValido(color(t,o),o,d));
+    bool opcion_2 = (pieza(t,o) == ALFIL && movimientoAlfilValido(t,o,d));
+    bool opcion_3 = (pieza(t,o) == TORRE && movimientoTorreValido(t,o,d));
+    bool opcion_4 = (pieza(t,o) == REY && movimientoReyValido(o,d));
+    return (opcion_1 || opcion_2 || opcion_3 || opcion_4);
+}
+
+bool capturaPeonValida(tablero t, coordenada o, coordenada d){ // o ataca a d
+    bool resp = abs(d.second - o.second) == 1;
+    bool opcion_1 = (color(t,o) == BLANCO && (d.first == o.first - 1));
+    bool opcion_2 = (color(t,o) == NEGRO && (d.first == o.first + 1));
+    return resp && (opcion_1 || opcion_2);
+}
+
+bool casillaAtacada(tablero t, coordenada o, coordenada d){ // o ataca a d
+    bool resp = !casillaVacia(t[o.first][o.second]);
+    bool opcion_1 = (pieza(t,o) != PEON) && movimientoPiezaValido(t,o,d);
+    bool opcion_2 = (pieza(t,o) == PEON) && capturaPeonValida(t,o,d);
+    return resp && (opcion_1 || opcion_2);
+}
+
+bool esCasillaAtacada(tablero t, int jugador, coordenada o){
+    bool resp = false;
+    coordenada d;
+    for (int i=0; i<ANCHO_TABLERO; i++){
+        for (int j=0; j<ANCHO_TABLERO; j++){
+            d = mp(i,j);
+            if (o != d && color(t,d)==jugador && casillaAtacada(t,d,o)) // d ataca a o
+                resp = true;
+        }
+    }
+    return resp;
+}
 
