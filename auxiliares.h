@@ -20,6 +20,9 @@ int color(tablero t, coordenada c);
 int contrincante(int j);
 int aparicionesEnTablero(tablero t, casilla c);
 
+int minimo(int x, int y);
+int maximo(int x, int y);
+
 
 //Predicados auxiliares:
 bool esJugadorValido(int j);
@@ -41,6 +44,23 @@ bool alfilesEnCoordenadas(tablero t);
 bool reyesEnCoordenadas(tablero t);
 bool piezasEnCoordenadas(tablero t);
 bool cantidadPiezasAlInicio(tablero t);
+
+void imprimir_coordenada(coordenada c);
+void imprimir_vector_de_coordenadas(vector<coordenada> v);
+void imprimir_casilla(casilla c);
+void imprimir_tablero(tablero t);
+
+bool mueveEnHorizontal(coordenada o, coordenada d);
+bool mueveEnVertical(coordenada o, coordenada d);
+bool mueveEnDiagonal(coordenada o, coordenada d);
+bool movimientoPeonValido(tablero t, coordenada o, coordenada d);
+bool movimientoAlfilValido(tablero t, coordenada o, coordenada d);
+bool movimientoTorreValido(tablero t, coordenada o, coordenada d);
+bool movimientoReyValido(tablero t, coordenada o, coordenada d);
+bool movimientoPiezaValido(tablero t, coordenada o, coordenada d);
+bool capturaPeonValida(tablero t, coordenada o, coordenada d);
+bool casillaAtacada(tablero t, coordenada o, coordenada d);
+bool esCasillaAtacada(tablero t, int jugador, coordenada o);
 
 
 #endif //AJEDREZLITE_AUXILIARES_H
