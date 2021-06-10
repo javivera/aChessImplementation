@@ -34,5 +34,13 @@ bool piezasReyesValidas(tablero t);
 bool cantidadValidaDePiezas(tablero t);
 bool esTableroValido(tablero t);
 
+bool piezaEnCoordenada(tablero t, coordenada c, int pza, int col);
+bool peonesEnCoordenadas(tablero t);
+bool torresEnCoordenadas(tablero t);
+bool alfilesEnCoordenadas(tablero t);
+bool reyesEnCoordenadas(tablero t);
+bool piezasEnCoordenadas(tablero t);
+bool cantidadPiezasAlInicio(tablero t);
+
 
 #endif //AJEDREZLITE_AUXILIARES_H
