@@ -157,3 +157,60 @@ bool esTableroValido(tablero t){
     return resp;
 }
                           
+///
+
+bool piezaEnCoordenada(tablero t, coordenada c, int pza, int col){
+    return pieza(t,c)==pza && color(t,c)==col;
+}
+
+bool peonesEnCoordenadas(tablero t){
+    bool resp = true;
+    for (int i=0; i<ANCHO_TABLERO; i++){
+        if (!piezaEnCoordenada(t,mp(1,i),PEON,NEGRO) || !piezaEnCoordenada(t,mp(6,i),PEON,BLANCO)){
+            resp = false;
+        }
+    }
+    return resp;
+}
+
+bool torresEnCoordenadas(tablero t){
+    bool resp = piezaEnCoordenada(t,mp(0,0),TORRE,NEGRO);
+    resp = resp && piezaEnCoordenada(t,mp(0,ANCHO_TABLERO - 1),TORRE,NEGRO);
+    resp = resp && piezaEnCoordenada(t,mp(ANCHO_TABLERO - 1,0),TORRE,BLANCO);
+    resp = resp && piezaEnCoordenada(t,mp(ANCHO_TABLERO - 1,ANCHO_TABLERO - 1),TORRE,BLANCO);
+    return resp;
+}
+
+bool alfilesEnCoordenadas(tablero t){
+    bool resp = piezaEnCoordenada(t,mp(0,2),ALFIL,NEGRO);
+    resp = resp && piezaEnCoordenada(t,mp(0,ANCHO_TABLERO - 3),ALFIL,NEGRO);
+    resp = resp && piezaEnCoordenada(t,mp(ANCHO_TABLERO - 1,2),ALFIL,BLANCO);
+    resp = resp && piezaEnCoordenada(t,mp(ANCHO_TABLERO - 1,ANCHO_TABLERO - 3),ALFIL,BLANCO);
+    return resp;
+}
+
+bool reyesEnCoordenadas(tablero t){
+    bool resp = piezaEnCoordenada(t,mp(0,4),REY,NEGRO);
+    resp = resp && piezaEnCoordenada(t,mp(ANCHO_TABLERO - 1,4),REY,BLANCO);
+    return resp;
+}
+
+bool piezasEnCoordenadas(tablero t){
+    bool resp = peonesEnCoordenadas(t);
+    resp = resp && torresEnCoordenadas(t);
+    resp = resp && alfilesEnCoordenadas(t); 
+    resp = resp && reyesEnCoordenadas(t);
+    return resp;
+}
+
+bool cantidadPiezasAlInicio(tablero t){
+    bool resp = aparicionesEnTablero(t,mp(TORRE,NEGRO)) == 2;
+    resp = resp && aparicionesEnTablero(t,mp(TORRE,BLANCO)) == 2;
+    resp = resp && aparicionesEnTablero(t,mp(ALFIL,NEGRO)) == 2;
+    resp = resp && aparicionesEnTablero(t,mp(ALFIL,BLANCO)) == 2;
+    resp = resp && aparicionesEnTablero(t,mp(PEON,NEGRO)) == ANCHO_TABLERO;
+    resp = resp && aparicionesEnTablero(t,mp(PEON,BLANCO)) == ANCHO_TABLERO;
+    return resp;
+}
+
+
