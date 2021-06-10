@@ -32,9 +32,7 @@ vector <coordenada> casillasAtacadas ( posicion const &p, int j ) {
 
 // EJERCICIO 4
 bool posicionSiguienteCorrecta ( posicion const &p1, posicion const &p2, coordenada o, coordenada d ) {
-    bool resp = false;
-    // completar codigo
-    return resp;
+    return posicionSiguiente(p1,p2,o,d);
 }
 
 // EJERCICIO 5
