@@ -85,10 +85,9 @@ bool esJugadorValido(int j){
 bool esMatriz(tablero t){
     bool resp = (t.size() == ANCHO_TABLERO);
     if (resp){
-        for (int i=0; i<ANCHO_TABLERO; i++){
+        for (int i=0; i<ANCHO_TABLERO && resp; i++){
             if (t[i].size() != ANCHO_TABLERO){
                 resp = false;
-                break;
             }
         }
     }
@@ -113,10 +112,9 @@ bool casillasValidas(tablero t){
 
 bool sinPeonesNoCoronados(tablero t){
     bool resp = true;
-    for (int i=0; i<ANCHO_TABLERO; i++){
+    for (int i=0; i<ANCHO_TABLERO && resp; i++){
         if (pieza(t,mp(0,i))==PEON || pieza(t,mp(ANCHO_TABLERO-1,i))==PEON){
             resp = false;
-            break;
         }
     }
     return resp;
@@ -184,10 +182,9 @@ bool piezaEnCoordenada(tablero t, coordenada c, int pza, int col){
 
 bool peonesEnCoordenadas(tablero t){
     bool resp = true;
-    for (int i=0; i<ANCHO_TABLERO; i++){
+    for (int i=0; i<ANCHO_TABLERO && resp; i++){
         if (!piezaEnCoordenada(t,mp(1,i),PEON,NEGRO) || !piezaEnCoordenada(t,mp(6,i),PEON,BLANCO)){
             resp = false;
-            break;
         }
     }
     return resp;
@@ -371,14 +368,79 @@ bool esCasillaAtacada(tablero t, int jugador, coordenada o){
     bool resp = false;
     coordenada d;
     for (int i=0; i<ANCHO_TABLERO && !resp; i++){
-        for (int j=0; j<ANCHO_TABLERO; j++){
+        for (int j=0; j<ANCHO_TABLERO && !resp; j++){
             d = mp(i,j);
             if (o != d && color(t,d)==jugador && casillaAtacada(t,d,o)){ // d ataca a o
                 resp = true;
-                break;
             }
         }
     }
+    return resp;
+}
+
+//Ejercicio 4:
+
+bool coordenada_en_secuencia(vector<coordenada> s, coordenada c){
+    bool resp = false;
+    for (int i=0; i<s.size() && !resp; i++){
+        if (s[i]==c)
+            resp = true;
+    }
+    return resp;
+}
+
+bool posicionesIgualesExceptoEn(posicion p, posicion q, vector<coordenada> s){
+    bool resp = true;
+    tablero t_p = tableroActual(p), t_q = tableroActual(q);
+    for (int i=0; i<ANCHO_TABLERO && resp; i++){
+        for (int j=0; j<ANCHO_TABLERO && resp; j++){
+            if (!coordenada_en_secuencia(s,mp(i,j))){
+                resp = resp && t_p[i][j] == t_q[i][j]; //casillas iguales
+            }
+        }
+    }
+    return resp;
+}
+
+bool esMovimientoValido(posicion p, coordenada o, coordenada d){
+    tablero t = tableroActual(p);
+    bool resp = jugadorPosicion(p) == color(t,o);
+    resp = resp && !casillaVacia(t[o.first][o.second]);
+    resp = resp && casillaVacia(t[d.first][d.second]);
+    resp = resp && movimientoPiezaValido(t,o,d);
+    return resp;
+}
+
+bool esCapturaValida(posicion p, coordenada o, coordenada d){
+    tablero t = tableroActual(p);
+    bool resp = !casillaVacia(t[o.first][o.second]);
+    resp = resp && !casillaVacia(t[d.first][d.second]);
+    resp = resp && color(t,o) != color(t,d);
+    resp = resp && casillaAtacada(t,o,d);
+    return resp;
+} 
+
+bool enLineaFinalInicial(coordenada d){
+    return (d.first == 0 || d.first == ANCHO_TABLERO - 1); 
+}
+
+bool piezaCorrectaEnDestino(posicion p, posicion q, coordenada o, coordenada d){
+    tablero t_p = tableroActual(p), t_q = tableroActual(q);
+    bool resp = color(t_p,o) == color(t_q,d);
+    bool opcion_1 = enLineaFinalInicial(d) && pieza(t_q,d) == TORRE;
+    bool opcion_2 = !enLineaFinalInicial(d) && pieza(t_p,o) == pieza(t_q,d);
+    return resp && (opcion_1 || opcion_2);
+}
+
+bool posicionSiguiente(posicion p, posicion q, coordenada o, coordenada d){
+    vector<coordenada> s;
+    s.push_back(o);
+    s.push_back(d);
+    tablero t_q = tableroActual(q);
+    bool resp = posicionesIgualesExceptoEn(p,q,s);
+    resp = resp && casillaVacia(t_q[o.first][o.second]);
+    resp = resp && (esMovimientoValido(p,o,d) || esCapturaValida(p,o,d));
+    resp = resp && piezaCorrectaEnDestino(p,q,o,d);
     return resp;
 }
 
