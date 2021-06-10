@@ -25,6 +25,7 @@ int maximo(int x, int y);
 
 
 //Predicados auxiliares:
+//Ejercicio 1:
 bool esJugadorValido(int j);
 bool esMatriz(tablero t);
 bool casillaVacia(casilla c);
@@ -37,6 +38,7 @@ bool piezasReyesValidas(tablero t);
 bool cantidadValidaDePiezas(tablero t);
 bool esTableroValido(tablero t);
 
+//Ejercicio 2:
 bool piezaEnCoordenada(tablero t, coordenada c, int pza, int col);
 bool peonesEnCoordenadas(tablero t);
 bool torresEnCoordenadas(tablero t);
@@ -45,11 +47,13 @@ bool reyesEnCoordenadas(tablero t);
 bool piezasEnCoordenadas(tablero t);
 bool cantidadPiezasAlInicio(tablero t);
 
+//Impresion:
 void imprimir_coordenada(coordenada c);
 void imprimir_vector_de_coordenadas(vector<coordenada> v);
 void imprimir_casilla(casilla c);
 void imprimir_tablero(tablero t);
 
+//Ejercicio 3:
 bool mueveEnHorizontal(coordenada o, coordenada d);
 bool mueveEnVertical(coordenada o, coordenada d);
 bool mueveEnDiagonal(coordenada o, coordenada d);
