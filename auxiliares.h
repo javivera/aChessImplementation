@@ -25,8 +25,9 @@ int maximo(int x, int y);
 
 posicion cambioDePosicion(posicion p, coordenada o, coordenada d);
 
+vector<coordenada> secuenciaDePiezasDeJugador(posicion p, int jugador);
 vector<coordenada> coordenadasConMovimientos(posicion p, int jugador);
-vector<coordenada> casillasAtacadasDeJugador(tablero t, int jugador);
+vector<coordenada> casillaMovimientosPosibles(posicion p, int jugador);
 
 coordenada coordenadaRey(tablero t, int jugador);
 
@@ -95,6 +96,9 @@ bool loPoneEnJaque(posicion p, coordenada o, coordenada d);
 bool esJugadaLegal(posicion p, coordenada o, coordenada d);
 bool existeMovimientoParaSalirDelJaque(posicion p);
 bool esJaqueMate(posicion p);
+
+//Ejercicio 7:
+bool alMoverQuedaEnJaque(posicion p);
 
 
 
