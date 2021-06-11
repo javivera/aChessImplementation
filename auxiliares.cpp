@@ -8,7 +8,6 @@ pair<int,int> mp(int a, int b) {
     return make_pair(a, b);
 }
 
-// TEST
 vector<pair<int,int>> ordenarVectorPares(vector<pair<int,int>> &v) {
     sort(v.begin(), v.end());
 //    v.erase(unique(v.begin(), v.end()), v.end());
@@ -74,6 +73,67 @@ int maximo(int x, int y){
         return y;
     else
         return x;
+}
+
+posicion cambioDePosicion(posicion p, coordenada o, coordenada d){
+    tablero t = tableroActual(p);
+    if (esMovimientoValido(p,o,d) || esCapturaValida(p,o,d)){
+        if (enLineaFinalInicial(d) && pieza(t,o)==PEON){
+            t[d.first][d.second] = mp(TORRE,o.second);
+            t[o.first][o.second] = cVACIA;
+        } else {
+            t[d.first][d.second] = t[o.first][o.second];
+            t[o.first][o.second] = cVACIA;
+        }
+    }
+    posicion posicion_cambiada = make_pair(t,contrincante(jugadorPosicion(p)));
+    return posicion_cambiada;
+}
+
+vector<coordenada> coordenadasConMovimientos(posicion p, int jugador){
+    tablero t = tableroActual(p);
+    vector<coordenada> piezas;
+    coordenada c;
+    for (int i=0; i<ANCHO_TABLERO; i++){
+        for (int j=0; j<ANCHO_TABLERO; j++){
+            c = mp(i,j);
+            if (color(t,c) == jugador){
+                piezas.push_back(c);
+                if (!tienenMovimiento(p,piezas)){
+                    piezas.pop_back();
+                } 
+            }
+        }
+    }
+    return piezas;
+}
+
+vector<coordenada> casillasAtacadasDeJugador(tablero t, int jugador){
+    vector<coordenada> piezas;
+    coordenada c;
+    for (int i=0; i<ANCHO_TABLERO; i++){
+        for (int j=0; j<ANCHO_TABLERO; j++){
+            c = mp(i,j);
+            if (esCasillaAtacada(t,jugador,c)){
+                piezas.push_back(c);
+            }
+        }
+    }
+    return piezas;
+}
+
+coordenada coordenadaRey(tablero t, int jugador){
+    bool resp = false;
+    coordenada c;
+    for (int i=0; i<ANCHO_TABLERO && !resp; i++){
+        for (int j=0; j<ANCHO_TABLERO && !resp; j++){
+            c = mp(i,j);
+            if (t[i][j] == mp(REY,jugador)){
+                resp = true;
+            }
+        }
+    }
+    return c;
 }
 
 //Predicados auxiliares:
@@ -427,8 +487,8 @@ bool enLineaFinalInicial(coordenada d){
 bool piezaCorrectaEnDestino(posicion p, posicion q, coordenada o, coordenada d){
     tablero t_p = tableroActual(p), t_q = tableroActual(q);
     bool resp = color(t_p,o) == color(t_q,d);
-    bool opcion_1 = enLineaFinalInicial(d) && pieza(t_q,d) == TORRE;
-    bool opcion_2 = !enLineaFinalInicial(d) && pieza(t_p,o) == pieza(t_q,d);
+    bool opcion_1 = pieza(t_p,o) == PEON && enLineaFinalInicial(d) && pieza(t_q,d) == TORRE;
+    bool opcion_2 = !(pieza(t_p,o) == PEON && enLineaFinalInicial(d)) && pieza(t_p,o) == pieza(t_q,d);
     return resp && (opcion_1 || opcion_2);
 }
 
@@ -443,4 +503,119 @@ bool posicionSiguiente(posicion p, posicion q, coordenada o, coordenada d){
     resp = resp && piezaCorrectaEnDestino(p,q,o,d);
     return resp;
 }
+
+//Ejercicio 5:
+
+
+
+//Ejercicio 6:
+
+bool soloHayReyes(tablero t){
+    bool resp = aparicionesEnTablero(t,mp(REY,BLANCO)) == 1 && aparicionesEnTablero(t,mp(REY,NEGRO)) == 1;
+    for (int i=PEON; i<REY && resp; i++){
+        if (aparicionesEnTablero(t,mp(i,BLANCO)) != 0 || aparicionesEnTablero(t,mp(i,NEGRO)) != 0)
+            resp = false;
+    }
+    return resp;
+}
+
+bool jugadorEnJaque(posicion p, int jugador){
+    tablero t = tableroActual(p);
+    coordenada rey = coordenadaRey(t,jugador);
+    return esCasillaAtacada(t,contrincante(jugador),rey);
+}
+
+bool piezasDeJugador(posicion p, vector<coordenada> s){
+    bool resp = true;
+    if (s.size() > 0){
+        for (int i=0; i<s.size() && resp; i++){
+            if (color(tableroActual(p),s[i]) != jugadorPosicion(p))
+                resp = false;
+        }
+    }
+    return resp;
+}
+
+bool tienenMovimiento(posicion p, vector<coordenada> piezas){
+    bool resp = (piezas.size() > 0);
+    tablero t = tableroActual(p);
+    coordenada d;
+    int k = 0;
+    while (k<piezas.size() && resp){
+        resp = false;
+        for (int i=0; i<ANCHO_TABLERO && !resp; i++){
+            for (int j=0; j<ANCHO_TABLERO && !resp; j++){
+                d = mp(i,j);
+                if (esMovimientoValido(p,piezas[k],d) || esCapturaValida(p,piezas[k],d)){
+                    resp = true;
+                }
+            }
+        }
+        k++;
+    }
+    return (k==piezas.size());
+}
+
+bool hayMovimientosLegales(posicion p){
+    bool resp = false;
+    coordenada c;
+    vector<coordenada> piezas;
+    for (int i=0; i<ANCHO_TABLERO && !resp; i++){
+        for (int j=0; j<ANCHO_TABLERO && !resp; j++){
+            c = mp(i,j);
+            piezas.push_back(c);
+            if (piezasDeJugador(p,piezas) && tienenMovimiento(p,piezas)){
+                resp = true;
+            } else {
+                piezas.pop_back();
+            }
+        }
+    }
+    return resp;
+}
+
+bool esEmpate(posicion p){ 
+    bool opcion_1 = soloHayReyes(tableroActual(p));
+    bool opcion_2 = (!jugadorEnJaque(p,jugadorPosicion(p)) && !hayMovimientosLegales(p));
+    return opcion_1 || opcion_2;
+}
+
+bool loPoneEnJaque(posicion p, coordenada o, coordenada d){
+    posicion p_siguiente = cambioDePosicion(p,o,d); //si no es mov valido, lo deja igual
+    bool resp = posicionSiguiente(p,p_siguiente,o,d);
+    resp = resp && jugadorEnJaque(p_siguiente,jugadorPosicion(p));
+    return resp;
+}
+
+bool esJugadaLegal(posicion p, coordenada o, coordenada d){
+    bool resp = esMovimientoValido(p,o,d) || esCapturaValida(p,o,d);
+    resp = resp && !loPoneEnJaque(p,o,d);
+    return resp;
+}
+
+bool existeMovimientoParaSalirDelJaque(posicion p){
+    tablero t = tableroActual(p);
+    vector<coordenada> movibles = coordenadasConMovimientos(p,jugadorPosicion(p));
+    vector<coordenada> atacadas = casillasAtacadasDeJugador(t,jugadorPosicion(p));
+    bool resp = false;
+    if (movibles.size() > 0 && atacadas.size() > 0){
+        for (int i=0; i<movibles.size() && !resp; i++){
+            for (int j=0; j<atacadas.size() && !resp; j++){
+                if (esJugadaLegal(p,movibles[i],atacadas[j])){ //esa jugada es valida y no tiene jaque
+                    resp = true;
+                }
+            }
+        }
+    }
+    return resp;
+}
+
+bool esJaqueMate(posicion p){
+    bool resp = jugadorEnJaque(p,jugadorPosicion(p));
+    resp = resp && !existeMovimientoParaSalirDelJaque(p);
+    return resp;
+}
+
+
+
 
