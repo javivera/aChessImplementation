@@ -58,9 +58,7 @@ bool finDeLaPartida ( posicion const &p, int &j ) {
 
 // EJERCICIO 7
 bool hayJaqueDescubierto ( posicion const &p ) {
-    bool resp = false;
-    // completar codigo
-    return resp;
+    return alMoverQuedaEnJaque(p);
 }
 
 // EJERCICIO 8
