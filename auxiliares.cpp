@@ -454,7 +454,7 @@ bool posicionesIgualesExceptoEn(posicion p, posicion q, vector<coordenada> s){
     tablero t_p = tableroActual(p), t_q = tableroActual(q);
     for (int i=0; i<ANCHO_TABLERO && resp; i++){
         for (int j=0; j<ANCHO_TABLERO && resp; j++){
-            if (!coordenada_en_secuencia(s,mp(i,j))){
+            if (!coordenadaEnSecuencia(s,mp(i,j))){
                 resp = resp && t_p[i][j] == t_q[i][j]; //casillas iguales
             }
         }
