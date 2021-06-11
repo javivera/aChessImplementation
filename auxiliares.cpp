@@ -440,7 +440,7 @@ bool esCasillaAtacada(tablero t, int jugador, coordenada o){
 
 //Ejercicio 4:
 
-bool coordenada_en_secuencia(vector<coordenada> s, coordenada c){
+bool coordenadaEnSecuencia(vector<coordenada> s, coordenada c){
     bool resp = false;
     for (int i=0; i<s.size() && !resp; i++){
         if (s[i]==c)
