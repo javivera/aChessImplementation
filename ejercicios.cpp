@@ -43,8 +43,16 @@ void ordenarTablero ( posicion &p ) {
 
 // EJERCICIO 6
 bool finDeLaPartida ( posicion const &p, int &j ) {
-    bool resp = false;
-    // completar codigo
+    bool resp;
+    if (esEmpate(p)){ //jugador = 0
+        j = 0;
+        resp = true; //termina
+    } else if (esJaqueMate(p)){
+        j = contrincante(jugadorPosicion(p)); //jugador ganador
+        resp = true; //termina
+    } else {
+        resp = false; //no termina
+    }
     return resp;
 }
 
