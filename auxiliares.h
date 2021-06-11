@@ -23,8 +23,21 @@ int aparicionesEnTablero(tablero t, casilla c);
 int minimo(int x, int y);
 int maximo(int x, int y);
 
+posicion cambioDePosicion(posicion p, coordenada o, coordenada d);
+
+vector<coordenada> coordenadasConMovimientos(posicion p, int jugador);
+vector<coordenada> casillasAtacadasDeJugador(tablero t, int jugador);
+
+coordenada coordenadaRey(tablero t, int jugador);
+
 
 //Predicados auxiliares:
+//Impresion:
+void imprimir_coordenada(coordenada c);
+void imprimir_vector_de_coordenadas(vector<coordenada> v);
+void imprimir_casilla(casilla c);
+void imprimir_tablero(tablero t);
+
 //Ejercicio 1:
 bool esJugadorValido(int j);
 bool esMatriz(tablero t);
@@ -47,12 +60,6 @@ bool reyesEnCoordenadas(tablero t);
 bool piezasEnCoordenadas(tablero t);
 bool cantidadPiezasAlInicio(tablero t);
 
-//Impresion:
-void imprimir_coordenada(coordenada c);
-void imprimir_vector_de_coordenadas(vector<coordenada> v);
-void imprimir_casilla(casilla c);
-void imprimir_tablero(tablero t);
-
 //Ejercicio 3:
 bool mueveEnHorizontal(coordenada o, coordenada d);
 bool mueveEnVertical(coordenada o, coordenada d);
@@ -74,6 +81,20 @@ bool esCapturaValida(posicion p, coordenada o, coordenada d);
 bool enLineaFinalInicial(coordenada d);
 bool piezaCorrectaEnDestino(posicion p, posicion q, coordenada o, coordenada d);
 bool posicionSiguiente(posicion p, posicion q, coordenada o, coordenada d);
+
+//Ejercicio 5:
+
+//Ejercicio 6:
+bool soloHayReyes(tablero t);
+bool jugadorEnJaque(posicion p, int jugador);
+bool piezasDeJugador(posicion p, vector<coordenada> s);
+bool tienenMovimiento(posicion p, vector<coordenada> piezas);
+bool hayMovimientosLegales(posicion p); 
+bool esEmpate(posicion p);
+bool loPoneEnJaque(posicion p, coordenada o, coordenada d);
+bool esJugadaLegal(posicion p, coordenada o, coordenada d);
+bool existeMovimientoParaSalirDelJaque(posicion p);
+bool esJaqueMate(posicion p);
 
 
 
