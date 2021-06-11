@@ -137,7 +137,58 @@ coordenada coordenadaRey(tablero t, int jugador){
 }
 
 //Predicados auxiliares:
+//Impresion:
+void imprimir_coordenada(coordenada c){
+    cout << "(" << c.first << ", " << c.second << ")";
+}
+
+void imprimir_vector_de_coordenadas(vector<coordenada> v){
+    cout << "<";
+    if (v.size()>0){
+        for (int i=0; i<v.size()-1; i++){
+            imprimir_coordenada(v[i]);
+            cout << ", ";
+        }
+        imprimir_coordenada(v[v.size()-1]);
+    }
+    cout << ">" << endl;
+}
+
+void imprimir_casilla(casilla c){
+    if (c==mp(0,0))
+        cout << " cVacia ";
+    else if (c==mp(PEON,BLANCO))
+        cout << "cPeon_B ";
+    else if (c==mp(PEON,NEGRO))
+        cout << "cPeon_N ";
+    else if (c==mp(TORRE,BLANCO))
+        cout << "cTorre_B";
+    else if (c==mp(TORRE,NEGRO))
+        cout << "cTorre_N";
+    else if (c==mp(ALFIL,BLANCO))
+        cout << "cAlfil_B";
+    else if (c==mp(ALFIL,NEGRO))
+        cout << "cAlfil_N";
+    else if (c==mp(REY,BLANCO))
+        cout << " cRey_B ";
+    else if (c==mp(REY,NEGRO))
+        cout << " cRey_N ";
+}
+
+void imprimir_tablero(tablero t){ //Pre: tableroValido(p)
+    cout << endl;
+    for (int i=0; i<ANCHO_TABLERO; i++){
+        for (int j=0; j<ANCHO_TABLERO; j++){
+            imprimir_casilla(t[i][j]);
+            cout << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
 //Ejercicio 1:
+
 bool esJugadorValido(int j){
     return (j == BLANCO || j == NEGRO);
 }
@@ -288,57 +339,6 @@ bool cantidadPiezasAlInicio(tablero t){
     resp = resp && aparicionesEnTablero(t,mp(PEON,NEGRO)) == ANCHO_TABLERO;
     resp = resp && aparicionesEnTablero(t,mp(PEON,BLANCO)) == ANCHO_TABLERO;
     return resp;
-}
-
-//Impresion:
-
-void imprimir_coordenada(coordenada c){
-    cout << "(" << c.first << ", " << c.second << ")";
-}
-
-void imprimir_vector_de_coordenadas(vector<coordenada> v){
-    cout << "<";
-    if (v.size()>0){
-        for (int i=0; i<v.size()-1; i++){
-            imprimir_coordenada(v[i]);
-            cout << ", ";
-        }
-        imprimir_coordenada(v[v.size()-1]);
-    }
-    cout << ">" << endl;
-}
-
-void imprimir_casilla(casilla c){
-    if (c==mp(0,0))
-        cout << " cVacia ";
-    else if (c==mp(PEON,BLANCO))
-        cout << "cPeon_B ";
-    else if (c==mp(PEON,NEGRO))
-        cout << "cPeon_N ";
-    else if (c==mp(TORRE,BLANCO))
-        cout << "cTorre_B";
-    else if (c==mp(TORRE,NEGRO))
-        cout << "cTorre_N";
-    else if (c==mp(ALFIL,BLANCO))
-        cout << "cAlfil_B";
-    else if (c==mp(ALFIL,NEGRO))
-        cout << "cAlfil_N";
-    else if (c==mp(REY,BLANCO))
-        cout << " cRey_B ";
-    else if (c==mp(REY,NEGRO))
-        cout << " cRey_N ";
-}
-
-void imprimir_tablero(tablero t){ //Pre: tableroValido(p)
-    cout << endl;
-    for (int i=0; i<ANCHO_TABLERO; i++){
-        for (int j=0; j<ANCHO_TABLERO; j++){
-            imprimir_casilla(t[i][j]);
-            cout << " ";
-        }
-        cout << endl;
-    }
-    cout << endl;
 }
 
 //Ejercicio 3:
