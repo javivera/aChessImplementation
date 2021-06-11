@@ -92,34 +92,37 @@ posicion cambioDePosicion(posicion p, coordenada o, coordenada d){
 
 vector<coordenada> coordenadasConMovimientos(posicion p, int jugador){
     tablero t = tableroActual(p);
-    vector<coordenada> piezas;
-    coordenada c;
-    for (int i=0; i<ANCHO_TABLERO; i++){
-        for (int j=0; j<ANCHO_TABLERO; j++){
-            c = mp(i,j);
-            if (color(t,c) == jugador){
-                piezas.push_back(c);
-                if (!tienenMovimiento(p,piezas)){
-                    piezas.pop_back();
-                } 
-            }
+    vector<coordenada> piezasConMovimiento;
+    vector<coordenada> piezas = secuenciaDePiezasDeJugador(p,jugador);
+    int i=0;
+    while (i<piezas.size()){
+        piezasConMovimiento.push_back(piezas[i]);
+        if(!tienenMovimiento(p,piezasConMovimiento)){
+            piezasConMovimiento.pop_back();
         }
+        i++;
     }
     return piezas;
 }
 
-vector<coordenada> casillasAtacadasDeJugador(tablero t, int jugador){
-    vector<coordenada> piezas;
-    coordenada c;
+vector<coordenada> casillaMovimientosPosibles(posicion p, int jugador){
+    vector<coordenada> lugares;
+    vector<coordenada> piezas = secuenciaDePiezasDeJugador(p,jugador);
+    coordenada d;
+    bool b;
     for (int i=0; i<ANCHO_TABLERO; i++){
         for (int j=0; j<ANCHO_TABLERO; j++){
-            c = mp(i,j);
-            if (esCasillaAtacada(t,jugador,c)){
-                piezas.push_back(c);
+            d = mp(i,j);
+            b = false;
+            for (int k=0; k<piezas.size() && !b; k++){
+                if (esMovimientoValido(p,piezas[k],d) || esCapturaValida(p,piezas[k],d)){
+                    lugares.push_back(d);
+                    b = true;
+                }
             }
         }
     }
-    return piezas;
+    return lugares;
 }
 
 coordenada coordenadaRey(tablero t, int jugador){
@@ -596,12 +599,12 @@ bool esJugadaLegal(posicion p, coordenada o, coordenada d){
 bool existeMovimientoParaSalirDelJaque(posicion p){
     tablero t = tableroActual(p);
     vector<coordenada> movibles = coordenadasConMovimientos(p,jugadorPosicion(p));
-    vector<coordenada> atacadas = casillasAtacadasDeJugador(t,jugadorPosicion(p));
+    vector<coordenada> lugares = casillaMovimientosPosibles(p,jugadorPosicion(p));
     bool resp = false;
-    if (movibles.size() > 0 && atacadas.size() > 0){
+    if (movibles.size() > 0 && lugares.size() > 0){
         for (int i=0; i<movibles.size() && !resp; i++){
-            for (int j=0; j<atacadas.size() && !resp; j++){
-                if (esJugadaLegal(p,movibles[i],atacadas[j])){ //esa jugada es valida y no tiene jaque
+            for (int j=0; j<lugares.size() && !resp; j++){
+                if (esJugadaLegal(p,movibles[i],lugares[j])){ //esa jugada es valida y no tiene jaque
                     resp = true;
                 }
             }
@@ -616,6 +619,31 @@ bool esJaqueMate(posicion p){
     return resp;
 }
 
+//Ejercicio 7:
+
+bool alMoverQuedaEnJaque(posicion p){
+    tablero t = tableroActual(p);
+    vector<coordenada> movibles = coordenadasConMovimientos(p,jugadorPosicion(p));
+    vector<coordenada> lugares = casillaMovimientosPosibles(p,jugadorPosicion(p));
+    bool resp = false;
+    posicion posicion_siguiente;
+    coordenada o,d;
+    if (movibles.size() > 0 && lugares.size() > 0){
+        for (int i=0; i<movibles.size() && !resp; i++){
+            for (int j=0; j<lugares.size() && !resp; j++){
+                o = movibles[i];
+                d = lugares[j];
+                if (esMovimientoValido(p,o,d) || esCapturaValida(p,o,d)){ 
+                    posicion_siguiente = cambioDePosicion(p,o,d);
+                    if (posicionSiguiente(p,posicion_siguiente,o,d) && jugadorEnJaque(posicion_siguiente,jugadorPosicion(posicion_siguiente))){
+                        resp = true;
+                    }
+                }
+            }
+        }
+    }
+    return resp;
+}
 
 
 
