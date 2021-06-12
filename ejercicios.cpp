@@ -66,14 +66,14 @@ void ejecutarSecuenciaForzada ( posicion &p, secuencia s ) {
     posicion posicion_secuencia, posicion_forzada = p;
     for (int i=0; i<s.size(); i++){ //Pre: s.size()>0
         posicion_secuencia = cambioDePosicion(posicion_forzada,s[i].first,s[i].second);
-        posicion_forzada = cambioForzado(posicion_secuencia);
+        posicion_forzada = cambioForzado(posicion_secuencia); //Pre: es forzado.
     }
     p = posicion_forzada;
     return;
 }
 
 // EJERCICIO 9
-int seVieneElJaqueEn ( posicion const & p ) {
+int seVieneElJaqueEn ( posicion const & p ) { //Pre: maximo 3 jugadas.
     int k = 1;
     bool resp = false;
     while (k<3 && !resp){
