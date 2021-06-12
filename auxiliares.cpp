@@ -564,7 +564,29 @@ bool posicionSiguiente(posicion p, posicion q, coordenada o, coordenada d){
 
 //Ejercicio 5:
 
+void ordenarFila(tablero &t, int f){ //SelectionSort modificado (eligiendo minimo no 0).
+    for (int i=0; i<ANCHO_TABLERO; i++){ 
+        if (!casillaVacia(t[f][i])){
+            seleccionMinimo(t,f,i);
+        }
+    }
+}
 
+void seleccionMinimo(tablero &t, int f, int i){
+    int minimo = i;
+    for (int j=i; j<ANCHO_TABLERO; j++){
+        if ((!casillaVacia(t[f][j])) && t[f][j].first < t[f][minimo].first){
+            minimo = j;
+        }
+    }
+    swapCasillas(t,f,i,minimo);
+}
+
+void swapCasillas(tablero &t, int f, int i, int j){
+    casilla c = t[f][i];
+    t[f][i] = t[f][j];
+    t[f][j] = c;
+}
 
 //Ejercicio 6:
 
