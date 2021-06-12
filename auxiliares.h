@@ -32,6 +32,8 @@ vector<coordenada> casillaMovimientosPosibles(posicion p, int jugador);
 
 coordenada coordenadaRey(tablero t, int jugador);
 
+secuencia movimientosLegales(posicion p, int jugador);
+
 pair<coordenada,coordenada> unicoMovimientoForzado(posicion p, int jugador);
 
 //Predicados auxiliares:
@@ -102,6 +104,11 @@ bool esJaqueMate(posicion p);
 
 //Ejercicio 7:
 bool alMoverQuedaEnJaque(posicion p);
+
+//Ejercicio 9:
+bool movimientoForzado(posicion p);
+bool hayMateEnUno(posicion p);
+bool hayMateForzadoEn(posicion p,int k);
 
 
 
