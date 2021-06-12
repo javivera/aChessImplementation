@@ -89,6 +89,9 @@ bool piezaCorrectaEnDestino(posicion p, posicion q, coordenada o, coordenada d);
 bool posicionSiguiente(posicion p, posicion q, coordenada o, coordenada d);
 
 //Ejercicio 5:
+void ordenarFila(tablero &t, int f);
+void seleccionMinimo(tablero &t, int fila, int i);
+void swapCasillas(tablero &t, int f, int i, int j);
 
 //Ejercicio 6:
 bool soloHayReyes(tablero t);
