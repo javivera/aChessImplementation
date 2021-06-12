@@ -74,7 +74,14 @@ void ejecutarSecuenciaForzada ( posicion &p, secuencia s ) {
 
 // EJERCICIO 9
 int seVieneElJaqueEn ( posicion const & p ) {
-    int resp = -1;
-    // completar codigo
-    return resp;
+    int k = 1;
+    bool resp = false;
+    while (k<3 && !resp){
+        resp = hayMateForzadoEn(p,k);
+        k = k + 1;
+    }
+    if (resp){ //El ciclo termino antes de 3.
+        k = k - 1;
+    }
+    return k;
 }
