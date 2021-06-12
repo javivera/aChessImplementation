@@ -75,19 +75,37 @@ int maximo(int x, int y){
         return x;
 }
 
-posicion cambioDePosicion(posicion p, coordenada o, coordenada d){
+posicion cambioDePosicion(posicion p, coordenada o, coordenada d){ //Pre: mov y cap valido
     tablero t = tableroActual(p);
-    if (esMovimientoValido(p,o,d) || esCapturaValida(p,o,d)){
-        if (enLineaFinalInicial(d) && pieza(t,o)==PEON){
-            t[d.first][d.second] = mp(TORRE,o.second);
-            t[o.first][o.second] = cVACIA;
-        } else {
-            t[d.first][d.second] = t[o.first][o.second];
-            t[o.first][o.second] = cVACIA;
-        }
+    if (enLineaFinalInicial(d) && pieza(t,o)==PEON){
+        t[d.first][d.second] = mp(TORRE,color(t,o));
+        t[o.first][o.second] = cVACIA;
+    } else {
+        t[d.first][d.second] = t[o.first][o.second];
+        t[o.first][o.second] = cVACIA;
     }
     posicion posicion_cambiada = make_pair(t,contrincante(jugadorPosicion(p)));
     return posicion_cambiada;
+}
+
+posicion cambioForzado(posicion p){
+    pair<coordenada,coordenada> movimiento = unicoMovimientoForzado(p,jugadorPosicion(p));
+    posicion forzada = cambioDePosicion(p,movimiento.first,movimiento.second);
+    return forzada;
+}
+
+vector<coordenada> secuenciaDePiezasDeJugador(posicion p, int jugador){
+    tablero t = tableroActual(p);
+    vector<coordenada> piezas;
+    coordenada c;
+    for (int i=0; i<ANCHO_TABLERO; i++){
+        for (int j=0; j<ANCHO_TABLERO; j++){
+            c = mp(i,j);
+            if (color(t,c) == jugador)
+                piezas.push_back(c);
+        }
+    }
+    return piezas;
 }
 
 vector<coordenada> coordenadasConMovimientos(posicion p, int jugador){
@@ -139,6 +157,22 @@ coordenada coordenadaRey(tablero t, int jugador){
     return c;
 }
 
+pair<coordenada,coordenada> unicoMovimientoForzado(posicion p, int jugador){
+    vector<coordenada> movimientos = casillaMovimientosPosibles(p,jugador); 
+    vector<coordenada> piezas = coordenadasConMovimientos(p,jugador);
+    bool b = false;
+    pair<coordenada,coordenada> od;
+    for (int i=0; i<piezas.size() && !b; i++){
+        for (int j=0; j<movimientos.size() && !b; j++){
+            if (esJugadaLegal(p,piezas[i],movimientos[j])){ //Pre: solo uno de cada uno sirve
+                od = make_pair(piezas[i],movimientos[j]);
+                b = true;
+            }
+        }
+    }
+    return od;
+}
+
 //Predicados auxiliares:
 //Impresion:
 void imprimir_coordenada(coordenada c){
@@ -188,6 +222,20 @@ void imprimir_tablero(tablero t){ //Pre: tableroValido(p)
         cout << endl;
     }
     cout << endl;
+}
+
+void imprimir_secuencia_doble_coordenada(secuencia s){
+    cout << "<";
+    if (s.size()>0){
+        for (int i=0; i<s.size(); i++){
+            cout << "<";
+            imprimir_coordenada(s[i].first);
+            cout << ",";
+            imprimir_coordenada(s[i].second);
+            cout << ">";
+        }
+    }
+    cout << ">" << endl;
 }
 
 //Ejercicio 1:
