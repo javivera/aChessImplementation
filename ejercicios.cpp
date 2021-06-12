@@ -37,7 +37,11 @@ bool posicionSiguienteCorrecta ( posicion const &p1, posicion const &p2, coorden
 
 // EJERCICIO 5
 void ordenarTablero ( posicion &p ) {
-    // completar codigo
+    tablero t = tableroActual(p);
+    for (int f=0; f<ANCHO_TABLERO; f++){
+        ordenarFila(t,f);
+    }
+    p = make_pair(t,jugadorPosicion(p));
     return;
 }
 
