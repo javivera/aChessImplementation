@@ -157,20 +157,27 @@ coordenada coordenadaRey(tablero t, int jugador){
     return c;
 }
 
-pair<coordenada,coordenada> unicoMovimientoForzado(posicion p, int jugador){
-    vector<coordenada> movimientos = casillaMovimientosPosibles(p,jugador); 
+secuencia movimientosLegales(posicion p, int jugador){
     vector<coordenada> piezas = coordenadasConMovimientos(p,jugador);
-    bool b = false;
-    pair<coordenada,coordenada> od;
-    for (int i=0; i<piezas.size() && !b; i++){
-        for (int j=0; j<movimientos.size() && !b; j++){
-            if (esJugadaLegal(p,piezas[i],movimientos[j])){ //Pre: solo uno de cada uno sirve
-                od = make_pair(piezas[i],movimientos[j]);
-                b = true;
+    vector<coordenada> lugares = casillaMovimientosPosibles(p,jugador);
+    secuencia s;
+    pair<coordenada,coordenada> movimiento;
+    for (int i=0; i<piezas.size(); i++){
+        if (lugares.size()>0){ //No hay empate o jaquemate.
+            for (int j=0; j<lugares.size(); j++){
+                if (esJugadaLegal(p,piezas[i],lugares[j])){
+                    movimiento = make_pair(piezas[i],lugares[j]);
+                    s.push_back(movimiento);
+                }
             }
         }
     }
-    return od;
+    return s;
+}
+
+pair<coordenada,coordenada> unicoMovimientoForzado(posicion p, int jugador){ //Pre: movimiento forzado.
+    secuencia movimientos = movimientosLegales(p,jugador);
+    return movimientos[0];
 }
 
 //Predicados auxiliares:
@@ -693,5 +700,42 @@ bool alMoverQuedaEnJaque(posicion p){
     return resp;
 }
 
+//Ejercicio 9:
+
+bool movimientoForzado(posicion p){
+    secuencia movimientos = movimientosLegales(p,jugadorPosicion(p));
+    return movimientos.size() == 1;
+}
+
+bool hayMateEnUno(posicion p){ //Pre: La jugada no termino (mov>0).
+    posicion posicion_siguiente;
+    secuencia movimientos = movimientosLegales(p,jugadorPosicion(p));
+    bool resp = false;
+    for (int i=0; i<movimientos.size() && !resp; i++){
+        posicion_siguiente = cambioDePosicion(p,movimientos[i].first,movimientos[i].second);
+        if (esJaqueMate(posicion_siguiente))
+            resp = true;
+    }
+    return resp;
+}
+
+bool hayMateForzadoEn(posicion p,int k){ //Solo se evalua en k=1 y k=2.
+    bool resp = false;
+    if (k==1){
+        resp = hayMateEnUno(p);
+    } else {
+        posicion posicion_siguiente, posicion_forzada;
+        secuencia movimientos = movimientosLegales(p,jugadorPosicion(p));
+        for (int i=0; i<movimientos.size() && !resp; i++){
+            posicion_siguiente = cambioDePosicion(p,movimientos[i].first,movimientos[i].second);
+            if (movimientoForzado(posicion_siguiente)){
+                posicion_forzada = cambioForzado(posicion_siguiente);
+                if (hayMateEnUno(posicion_forzada))
+                    resp = true;
+            }
+        }
+    }
+    return resp;
+}
 
 
