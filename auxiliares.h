@@ -24,6 +24,7 @@ int minimo(int x, int y);
 int maximo(int x, int y);
 
 posicion cambioDePosicion(posicion p, coordenada o, coordenada d);
+posicion cambioForzado(posicion p);
 
 vector<coordenada> secuenciaDePiezasDeJugador(posicion p, int jugador);
 vector<coordenada> coordenadasConMovimientos(posicion p, int jugador);
@@ -31,6 +32,7 @@ vector<coordenada> casillaMovimientosPosibles(posicion p, int jugador);
 
 coordenada coordenadaRey(tablero t, int jugador);
 
+pair<coordenada,coordenada> unicoMovimientoForzado(posicion p, int jugador);
 
 //Predicados auxiliares:
 //Impresion:
@@ -38,6 +40,7 @@ void imprimir_coordenada(coordenada c);
 void imprimir_vector_de_coordenadas(vector<coordenada> v);
 void imprimir_casilla(casilla c);
 void imprimir_tablero(tablero t);
+void imprimir_secuencia_doble_coordenada(secuencia s);
 
 //Ejercicio 1:
 bool esJugadorValido(int j);
