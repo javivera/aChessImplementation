@@ -677,25 +677,13 @@ bool esJaqueMate(posicion p){
 //Ejercicio 7:
 
 bool alMoverQuedaEnJaque(posicion p){
-    tablero t = tableroActual(p);
-    vector<coordenada> movibles = coordenadasConMovimientos(p,jugadorPosicion(p));
-    vector<coordenada> lugares = casillaMovimientosPosibles(p,jugadorPosicion(p));
-    bool resp = false;
     posicion posicion_siguiente;
-    coordenada o,d;
-    if (movibles.size() > 0 && lugares.size() > 0){
-        for (int i=0; i<movibles.size() && !resp; i++){
-            for (int j=0; j<lugares.size() && !resp; j++){
-                o = movibles[i];
-                d = lugares[j];
-                if (esMovimientoValido(p,o,d) || esCapturaValida(p,o,d)){ 
-                    posicion_siguiente = cambioDePosicion(p,o,d);
-                    if (posicionSiguiente(p,posicion_siguiente,o,d) && jugadorEnJaque(posicion_siguiente,jugadorPosicion(posicion_siguiente))){
-                        resp = true;
-                    }
-                }
-            }
-        }
+    secuencia movimientos = movimientosLegales(p,jugadorPosicion(p));
+    bool resp = false;
+    for (int i=0; i<movimientos.size() && !resp; i++){
+        posicion_siguiente = cambioDePosicion(p,movimientos[i].first,movimientos[i].second);
+        if (jugadorEnJaque(posicion_siguiente,jugadorPosicion(posicion_siguiente)))
+            resp = true;
     }
     return resp;
 }
