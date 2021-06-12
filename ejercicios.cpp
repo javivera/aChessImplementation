@@ -63,7 +63,12 @@ bool hayJaqueDescubierto ( posicion const &p ) {
 
 // EJERCICIO 8
 void ejecutarSecuenciaForzada ( posicion &p, secuencia s ) {
-    // completar codigo
+    posicion posicion_secuencia, posicion_forzada = p;
+    for (int i=0; i<s.size(); i++){ //Pre: s.size()>0
+        posicion_secuencia = cambioDePosicion(posicion_forzada,s[i].first,s[i].second);
+        posicion_forzada = cambioForzado(posicion_secuencia);
+    }
+    p = posicion_forzada;
     return;
 }
 
