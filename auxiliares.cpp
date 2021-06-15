@@ -147,7 +147,6 @@ posicion cambioForzado(posicion p){
     return forzada;
 }
 
-//Predicados auxiliares:
 //Impresion:
 void imprimir_coordenada(coordenada c){
     cout << "(" << c.first << ", " << c.second << ")";
