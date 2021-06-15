@@ -24,7 +24,8 @@ coordenada setCoord(int i, int j) {
 tablero tableroActual ( posicion const &p ) {
     return p.first;
 }
-/*
+/* Comentado para la cobertura de las lineas de test
+ * 
 tablero inicializarTablero(){
     vector<casilla> fila(ANCHO_TABLERO, cVACIA);
     tablero out(ANCHO_TABLERO, fila);
@@ -146,7 +147,9 @@ posicion cambioForzado(posicion p){
     posicion forzada = cambioDePosicion(p,movimiento.first,movimiento.second);
     return forzada;
 }
-/*
+/* Comentado para la cobertura de las lineas de test
+ *
+ *
 //Impresion:
 void imprimir_coordenada(coordenada c){
     cout << "(" << c.first << ", " << c.second << ")";
