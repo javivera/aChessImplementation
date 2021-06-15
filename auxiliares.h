@@ -23,20 +23,17 @@ int aparicionesEnTablero(tablero t, casilla c);
 int minimo(int x, int y);
 int maximo(int x, int y);
 
-posicion cambioDePosicion(posicion p, coordenada o, coordenada d);
-posicion cambioForzado(posicion p);
+coordenada coordenadaRey(tablero t, int jugador);
 
 vector<coordenada> secuenciaDePiezasDeJugador(posicion p, int jugador);
-vector<coordenada> coordenadasConMovimientos(posicion p, int jugador);
-vector<coordenada> casillaMovimientosPosibles(posicion p, int jugador);
-
-coordenada coordenadaRey(tablero t, int jugador);
 
 secuencia movimientosLegales(posicion p, int jugador);
 
 pair<coordenada,coordenada> unicoMovimientoForzado(posicion p, int jugador);
 
-//Predicados auxiliares:
+posicion cambioDePosicion(posicion p, coordenada o, coordenada d);
+posicion cambioForzado(posicion p);
+
 //Impresion:
 void imprimir_coordenada(coordenada c);
 void imprimir_vector_de_coordenadas(vector<coordenada> v);
@@ -88,7 +85,7 @@ bool enLineaFinalInicial(coordenada d);
 bool piezaCorrectaEnDestino(posicion p, posicion q, coordenada o, coordenada d);
 bool posicionSiguiente(posicion p, posicion q, coordenada o, coordenada d);
 
-//Ejercicio 5:
+//Ejercicio 5
 void ordenarFila(tablero &t, int f);
 void seleccionMinimo(tablero &t, int fila, int i);
 void swapCasillas(tablero &t, int f, int i, int j);
@@ -96,13 +93,10 @@ void swapCasillas(tablero &t, int f, int i, int j);
 //Ejercicio 6:
 bool soloHayReyes(tablero t);
 bool jugadorEnJaque(posicion p, int jugador);
-bool piezasDeJugador(posicion p, vector<coordenada> s);
-bool tienenMovimiento(posicion p, vector<coordenada> piezas);
-bool hayMovimientosLegales(posicion p); 
-bool esEmpate(posicion p);
 bool loPoneEnJaque(posicion p, coordenada o, coordenada d);
 bool esJugadaLegal(posicion p, coordenada o, coordenada d);
-bool existeMovimientoParaSalirDelJaque(posicion p);
+bool hayMovimientosLegales(posicion p); 
+bool esEmpate(posicion p);
 bool esJaqueMate(posicion p);
 
 //Ejercicio 7:
@@ -112,7 +106,6 @@ bool alMoverQuedaEnJaque(posicion p);
 bool movimientoForzado(posicion p);
 bool hayMateEnUno(posicion p);
 bool hayMateForzadoEn(posicion p,int k);
-
 
 
 #endif //AJEDREZLITE_AUXILIARES_H
