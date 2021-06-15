@@ -1,8 +1,7 @@
-#include <algorithm>
+#include <iostream>
 #include "ejercicios.h"
 #include "definiciones.h"
 #include "auxiliares.h"
-#include <iostream>
 using namespace std;
 
 // EJERCICIO 1
@@ -42,20 +41,19 @@ void ordenarTablero ( posicion &p ) {
         ordenarFila(t,f);
     }
     p = make_pair(t,jugadorPosicion(p));
-    return;
 }
 
 // EJERCICIO 6
 bool finDeLaPartida ( posicion const &p, int &j ) {
     bool resp;
-    if (esEmpate(p)){ //jugador = 0
-        j = 0;
-        resp = true; //termina
+    if (esEmpate(p)){ 
+        j = 0; //Devuelve jugador = 0.
+        resp = true; //La partida termina en empate.
     } else if (esJaqueMate(p)){
-        j = contrincante(jugadorPosicion(p)); //jugador ganador
-        resp = true; //termina
+        j = contrincante(jugadorPosicion(p)); //Devuelve jugador ganador.
+        resp = true; //La partida termina en jaqueMate.
     } else {
-        resp = false; //no termina
+        resp = false; //La partida no termina.
     }
     return resp;
 }
@@ -69,19 +67,19 @@ bool hayJaqueDescubierto ( posicion const &p ) {
 void ejecutarSecuenciaForzada ( posicion &p, secuencia s ) {
     posicion posicion_secuencia, posicion_forzada = p;
     for (int i=0; i<s.size(); i++){ //Pre: s.size()>0
-        posicion_secuencia = cambioDePosicion(posicion_forzada,s[i].first,s[i].second);
-        posicion_forzada = cambioForzado(posicion_secuencia); //Pre: es forzado.
+        posicion_secuencia = cambioDePosicion(posicion_forzada,s[i].first,s[i].second); //Pre: es legal.
+        posicion_forzada = cambioForzado(posicion_secuencia); //Pre: es forzado (unico movimiento) y legal.
     }
     p = posicion_forzada;
     return;
 }
 
 // EJERCICIO 9
-int seVieneElJaqueEn ( posicion const & p ) { //Pre: maximo 3 jugadas.
+int seVieneElJaqueEn ( posicion const &p ) { //Pre: máximo 3 jugadas, mínimo una jugada.
     int k = 1;
-    bool resp = false;
+    bool resp = false; //Pre: La partida no termino.
     while (k<3 && !resp){
-        resp = hayMateForzadoEn(p,k);
+        resp = hayMateForzadoEn(p,k); //Se evalua en k=1 y k=2; si estos fallan, por descarte es k=3.
         k = k + 1;
     }
     if (resp){ //El ciclo termino antes de 3.
@@ -89,3 +87,4 @@ int seVieneElJaqueEn ( posicion const & p ) { //Pre: maximo 3 jugadas.
     }
     return k;
 }
+
