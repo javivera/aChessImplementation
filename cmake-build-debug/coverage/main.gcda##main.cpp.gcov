@@ -1,0 +1,21 @@
+        -:    0:Source:C:/Users/Lucho/Documents/GitHub/aChessImplementation/main.cpp
+        -:    0:Graph:C:\Users\Lucho\Documents\GitHub\aChessImplementation\cmake-build-debug\CMakeFiles\ajedrezLite.dir\main.gcno
+        -:    0:Data:C:\Users\Lucho\Documents\GitHub\aChessImplementation\cmake-build-debug\CMakeFiles\ajedrezLite.dir\main.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// MAIN del Trabajo Practico de Implementacion
+        -:    2:#include <iostream>
+        -:    3:#include "gtest/gtest.h"
+        -:    4:
+        -:    5:using namespace std;
+function main called 1 returned 100% blocks executed 100%
+        1:    6:int main(int argc, char **argv) {
+        1:    7:    std::cout << "Implementando TPI!!" << std::endl;
+        1:    7-block  0
+call    0 returned 1
+call    1 returned 1
+        1:    8:    ::testing::InitGoogleTest(&argc, argv);
+call    0 returned 1
+        1:    9:    return RUN_ALL_TESTS();
+call    0 returned 1
+        -:   10:}

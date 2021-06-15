@@ -40,3 +40,21 @@ TEST(finDeLaPartidaTEST, jaqueMate){
     EXPECT_TRUE(finDeLaPartida(p,j));
     EXPECT_EQ(j, BLANCO);
 }
+
+TEST(finDeLaPartidaTEST, tableroSoloReyes){
+    tablero t = {
+            {cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA},
+            {cVACIA, cVACIA, cVACIA, cREY_B, cVACIA, cVACIA, cVACIA, cVACIA},
+            {cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA},
+            {cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA},
+            {cVACIA, cREY_N, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA},
+            {cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA},
+            {cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA},
+            {cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA, cVACIA},
+    };
+    posicion p = make_pair(t,NEGRO);
+    int j;
+
+    EXPECT_TRUE(finDeLaPartida(p,j));
+    EXPECT_EQ(j, 0);
+}

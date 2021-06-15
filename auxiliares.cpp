@@ -24,13 +24,13 @@ coordenada setCoord(int i, int j) {
 tablero tableroActual ( posicion const &p ) {
     return p.first;
 }
-
+/*
 tablero inicializarTablero(){
     vector<casilla> fila(ANCHO_TABLERO, cVACIA);
     tablero out(ANCHO_TABLERO, fila);
     return out;
 } 
-
+*/
 ////// Nuevos segun orden de aparición:
 
 //Funciones auxiliares:
@@ -146,7 +146,7 @@ posicion cambioForzado(posicion p){
     posicion forzada = cambioDePosicion(p,movimiento.first,movimiento.second);
     return forzada;
 }
-
+/*
 //Impresion:
 void imprimir_coordenada(coordenada c){
     cout << "(" << c.first << ", " << c.second << ")";
@@ -210,7 +210,7 @@ void imprimir_secuencia_doble_coordenada(secuencia s){
     }
     cout << ">" << endl;
 }
-
+*/
 //Ejercicio 1:
 
 bool esJugadorValido(int j){
